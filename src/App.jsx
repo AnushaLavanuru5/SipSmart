@@ -72,9 +72,9 @@ function Introduction() {
           <div className='offset-md-3 col-md-6'>
             <div className='card shadow'>
               <div className='card-body'>
-                <h1 className='card-title'>Introduction</h1>
+                <h1 className='card-title'>Starbucks Nutrition Central: Your Guide to Healthy Choices</h1>
                 <p className='card-text'>
-                  Discover our delicious range of beverages and food items.
+                Sip Smarter, Live Healthier: Discover the Nutritional Secrets Behind Your Starbucks Favorites!
                 </p>
                 {/* Add more text or components as needed */}
               </div>
@@ -169,9 +169,9 @@ function Comparison() {
           <div className='offset-md-3 col-md-6'>
             <div className='card shadow'>
               <div className='card-body'>
-                <h1 className='card-title'>Introduction</h1>
+                <h1 className='card-title'>Craft Your Perfect Beverage</h1>
                 <p className='card-text'>
-                  Discover our delicious range of beverages and food items.
+                Personalize your Starbucks experience with our customizable drink options. Select your favorite base, add-ons, and modifiers. 
                 </p>
                 {/* Add more text or components as needed */}
               </div>
@@ -242,7 +242,7 @@ function StarbucksChart() {
           .range([height - margin.bottom, margin.top]);
 
       svg.append("g")
-          .attr("fill", 'brown')
+          .attr("fill", 'yellow')
           .selectAll("rect")
           .data(filteredData)
           .join("rect")
@@ -257,18 +257,24 @@ function StarbucksChart() {
               .tickFormat((d, i) => filteredData[i] ? filteredData[i].Beverage + " (" + filteredData[i].Beverage_prep + ")" : "")
               .ticks(filteredData.length))
           .selectAll("text")
+              .attr("fill", 'black')
               .attr("transform", "translate(-10,0)rotate(-45)")
               .style("text-anchor", "end");
 
-      svg.append("g")
-          .attr("transform", `translate(${margin.left},0)`)
-          .call(d3.axisLeft(y));
+            svg.append("g")
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(d3.axisLeft(y))
+            .selectAll("text")
+            .style("fill", "black")
+          .selectAll("line")
+            .style("stroke", "black");
+          
   };
 
   return (
       <div className='chart-container introduction1'>
         <div className='dropdown-container'>
-          <h1>Starbucks Beverage Data</h1>
+          <h1 style={{ color: 'black' }}>Starbucks Beverage Data</h1>
           <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>
               {uniqueCategories.map(category => (
                   <option key={category} value={category}>{category}</option>
